@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>João Victor e Anna Júlia</title>
-    <!-- Fonte Wild Love -->
     <link href="https://fonts.googleapis.com/css2?family=Wild+Love&display=swap" rel="stylesheet">
     <style>
         /* Estilo do fundo da página */
@@ -15,8 +14,10 @@
             text-align: center;
             padding: 30px;
             position: relative;
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased; /* Ajuste para iOS */
+            overflow: auto; /* Permite rolar a página */
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding-bottom: 100px; /* Garantir que tenha espaço suficiente no final da página */
         }
 
         /* Estilo do título */
@@ -96,7 +97,6 @@
             color: white;
             text-shadow: 0 0 5px red, 0 0 10px red;
         }
-
     </style>
 </head>
 <body>
@@ -117,7 +117,6 @@
         <p class="contador">Tempo desde (22/04/2024): <span id="contador2"></span></p>
     </div>
 
-    <!-- Sparkles brilhantes no fundo -->
     <div class="sparkles"></div>
 
     <script>
@@ -127,7 +126,6 @@
 
             const tempoTotal = agora - dataInicial;
 
-            // Calculando meses, dias, horas, minutos e segundos
             const meses = Math.floor(tempoTotal / (1000 * 60 * 60 * 24 * 30));
             const dias = Math.floor((tempoTotal % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
             const horas = Math.floor((tempoTotal % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -139,11 +137,12 @@
             document.getElementById(idContador).textContent = contador;
         }
 
-        setInterval(() => calcularTempo('2024-06-12T00:00:00', "contador"), 1000); // Atualiza o contador a cada segundo para 12/06/2024
-        setInterval(() => calcularTempo('2024-04-22T00:00:00', "contador2"), 1000); // Atualiza o contador a cada segundo para 22/04/2024
+        setInterval(() => calcularTempo('2024-06-12T00:00:00', "contador"), 1000);
+        setInterval(() => calcularTempo('2024-04-22T00:00:00', "contador2"), 1000);
 
-        calcularTempo('2024-06-12T00:00:00', "contador"); // Inicializa o contador para 12/06/2024
-        calcularTempo('2024-04-22T00:00:00', "contador2"); // Inicializa o contador para 22/04/2024
+        calcularTempo('2024-06-12T00:00:00', "contador");
+        calcularTempo('2024-04-22T00:00:00', "contador2");
     </script>
 </body>
 </html>
+
