@@ -124,6 +124,10 @@
             const dataInicial = new Date(dataInicio); 
             const agora = new Date();
 
+            // Garantir que a data de início esteja correta, com hora, minuto e segundo zerados
+            dataInicial.setHours(0, 0, 0, 0);
+            agora.setHours(0, 0, 0, 0);
+
             const tempoTotal = agora - dataInicial;
 
             const meses = Math.floor(tempoTotal / (1000 * 60 * 60 * 24 * 30));
@@ -137,11 +141,11 @@
             document.getElementById(idContador).textContent = contador;
         }
 
-        setInterval(() => calcularTempo('2024-06-12T00:00:00', "contador"), 1000);
-        setInterval(() => calcularTempo('2024-04-22T00:00:00', "contador2"), 1000);
+        setInterval(() => calcularTempo('2024-06-12', "contador"), 1000);
+        setInterval(() => calcularTempo('2024-04-22', "contador2"), 1000);
 
-        calcularTempo('2024-06-12T00:00:00', "contador");
-        calcularTempo('2024-04-22T00:00:00', "contador2");
+        calcularTempo('2024-06-12', "contador");
+        calcularTempo('2024-04-22', "contador2");
     </script>
 </body>
 </html>
