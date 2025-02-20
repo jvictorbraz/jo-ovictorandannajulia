@@ -128,17 +128,19 @@
             dataInicial.setHours(0, 0, 0, 0);
             agora.setHours(0, 0, 0, 0);
 
-            const tempoTotal = agora - dataInicial;
+            const anos = agora.getFullYear() - dataInicial.getFullYear();
+            const meses = agora.getMonth() - dataInicial.getMonth();
+            const dias = agora.getDate() - dataInicial.getDate();
 
-            const meses = Math.floor(tempoTotal / (1000 * 60 * 60 * 24 * 30));
-            const dias = Math.floor((tempoTotal % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((tempoTotal % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((tempoTotal % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((tempoTotal % (1000 * 60)) / 1000);
+            // Ajustar o cálculo se o mês ou o dia ainda não tiverem ocorrido
+            const ajusteMeses = meses < 0 ? anos-- && (meses + 12) : meses;
+            const ajusteDias = dias < 0 ? (meses === 0 ? (dias + 30) : dias + 30) : dias;
 
-            const contador = `${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos`;
+            // Ajustar para o caso de a diferença de meses ser negativa
+            const tempoTotal = `${ajusteMeses} meses, ${ajusteDias} dias`;
 
-            document.getElementById(idContador).textContent = contador;
+            // Exibir tempo no contador
+            document.getElementById(idContador).textContent = tempoTotal;
         }
 
         setInterval(() => calcularTempo('2024-06-12', "contador"), 1000);
@@ -149,4 +151,5 @@
     </script>
 </body>
 </html>
+
 
